@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="#A7C7E7">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="263dp"
+        android:layout_height="232dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/logo" /> <!-- Replace '@drawable/logo' with your actual logo resource -->
+
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="50dp"
+        android:text="Login"
+        android:background="#D3D3D3"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Already registered? Please log in." />
+
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_button"
+        android:layout_marginTop="50dp"
+        android:background="#D3D3D3"
+        android:text="Sign Up" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="New user? Please sign up." />
+
+</RelativeLayout>
