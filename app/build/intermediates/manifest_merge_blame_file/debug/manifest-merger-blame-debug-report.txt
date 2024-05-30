@@ -1,0 +1,188 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.mypregnancyjourney"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="34" />
+10
+11    <permission
+11-->[androidx.core:core:1.9.0] /Users/wai/.gradle/caches/transforms-3/a309491863f1cad1388d82071cb60f8c/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+12        android:name="com.example.mypregnancyjourney.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+12-->[androidx.core:core:1.9.0] /Users/wai/.gradle/caches/transforms-3/a309491863f1cad1388d82071cb60f8c/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+13        android:protectionLevel="signature" />
+13-->[androidx.core:core:1.9.0] /Users/wai/.gradle/caches/transforms-3/a309491863f1cad1388d82071cb60f8c/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+14
+15    <uses-permission android:name="com.example.mypregnancyjourney.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+15-->[androidx.core:core:1.9.0] /Users/wai/.gradle/caches/transforms-3/a309491863f1cad1388d82071cb60f8c/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.9.0] /Users/wai/.gradle/caches/transforms-3/a309491863f1cad1388d82071cb60f8c/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+16
+17    <application
+17-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:5:5-48:19
+18        android:allowBackup="true"
+18-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:6:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.9.0] /Users/wai/.gradle/caches/transforms-3/a309491863f1cad1388d82071cb60f8c/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+20        android:dataExtractionRules="@xml/data_extraction_rules"
+20-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:7:9-65
+21        android:debuggable="true"
+22        android:extractNativeLibs="false"
+23        android:fullBackupContent="@xml/backup_rules"
+23-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:8:9-54
+24        android:icon="@mipmap/ic_launcher"
+24-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:9:9-43
+25        android:label="@string/app_name"
+25-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:10:9-41
+26        android:roundIcon="@mipmap/ic_launcher_round"
+26-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:11:9-54
+27        android:supportsRtl="true"
+27-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:12:9-35
+28        android:testOnly="true"
+29        android:theme="@style/Theme.MyPregnancyJourney" >
+29-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:13:9-56
+30        <activity
+30-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:15:9-17:40
+31            android:name="com.example.mypregnancyjourney.LastSevenDaysActivity"
+31-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:16:13-50
+32            android:exported="false" />
+32-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:17:13-37
+33        <activity
+33-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:18:9-20:40
+34            android:name="com.example.mypregnancyjourney.NextSevenDaysActivity"
+34-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:19:13-50
+35            android:exported="false" />
+35-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:20:13-37
+36        <activity
+36-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:21:9-23:40
+37            android:name="com.example.mypregnancyjourney.NoteActivity"
+37-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:22:13-41
+38            android:exported="false" />
+38-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:23:13-37
+39        <activity
+39-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:24:9-26:40
+40            android:name="com.example.mypregnancyjourney.CalendarActivity"
+40-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:25:13-45
+41            android:exported="false" />
+41-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:26:13-37
+42        <activity
+42-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:27:9-29:40
+43            android:name="com.example.mypregnancyjourney.WelcomeActivity"
+43-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:28:13-44
+44            android:exported="false" />
+44-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:29:13-37
+45        <activity
+45-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:30:9-32:40
+46            android:name="com.example.mypregnancyjourney.ResetPasswordActivity"
+46-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:31:13-50
+47            android:exported="false" />
+47-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:32:13-37
+48        <activity
+48-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:33:9-35:40
+49            android:name="com.example.mypregnancyjourney.SignUpActivity"
+49-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:34:13-43
+50            android:exported="false" />
+50-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:35:13-37
+51        <activity
+51-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:36:9-38:40
+52            android:name="com.example.mypregnancyjourney.LogInActivity"
+52-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:37:13-42
+53            android:exported="false" />
+53-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:38:13-37
+54        <activity
+54-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:39:9-47:20
+55            android:name="com.example.mypregnancyjourney.MainActivity"
+55-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:40:13-41
+56            android:exported="true" >
+56-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:41:13-36
+57            <intent-filter>
+57-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:42:13-46:29
+58                <action android:name="android.intent.action.MAIN" />
+58-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:43:17-69
+58-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:43:25-66
+59
+60                <category android:name="android.intent.category.LAUNCHER" />
+60-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:45:17-77
+60-->/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:45:27-74
+61            </intent-filter>
+62        </activity>
+63
+64        <provider
+64-->[com.github.prolificinteractive:material-calendarview:2.0.0] /Users/wai/.gradle/caches/transforms-3/546c335529cd49005015ce50fd123f9c/transformed/jetified-material-calendarview-2.0.0/AndroidManifest.xml:12:9-16:40
+65            android:name="com.prolificinteractive.materialcalendarview.MaterialCalendarViewInitProvider"
+65-->[com.github.prolificinteractive:material-calendarview:2.0.0] /Users/wai/.gradle/caches/transforms-3/546c335529cd49005015ce50fd123f9c/transformed/jetified-material-calendarview-2.0.0/AndroidManifest.xml:13:13-105
+66            android:authorities="com.example.mypregnancyjourney.materialcalendarviewinitprovider"
+66-->[com.github.prolificinteractive:material-calendarview:2.0.0] /Users/wai/.gradle/caches/transforms-3/546c335529cd49005015ce50fd123f9c/transformed/jetified-material-calendarview-2.0.0/AndroidManifest.xml:14:13-84
+67            android:enabled="true"
+67-->[com.github.prolificinteractive:material-calendarview:2.0.0] /Users/wai/.gradle/caches/transforms-3/546c335529cd49005015ce50fd123f9c/transformed/jetified-material-calendarview-2.0.0/AndroidManifest.xml:15:13-35
+68            android:exported="false" />
+68-->[com.github.prolificinteractive:material-calendarview:2.0.0] /Users/wai/.gradle/caches/transforms-3/546c335529cd49005015ce50fd123f9c/transformed/jetified-material-calendarview-2.0.0/AndroidManifest.xml:16:13-37
+69        <provider
+69-->[androidx.emoji2:emoji2:1.2.0] /Users/wai/.gradle/caches/transforms-3/6db5aa862a49de8667f2a7b9b0bf2022/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+70            android:name="androidx.startup.InitializationProvider"
+70-->[androidx.emoji2:emoji2:1.2.0] /Users/wai/.gradle/caches/transforms-3/6db5aa862a49de8667f2a7b9b0bf2022/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+71            android:authorities="com.example.mypregnancyjourney.androidx-startup"
+71-->[androidx.emoji2:emoji2:1.2.0] /Users/wai/.gradle/caches/transforms-3/6db5aa862a49de8667f2a7b9b0bf2022/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+72            android:exported="false" >
+72-->[androidx.emoji2:emoji2:1.2.0] /Users/wai/.gradle/caches/transforms-3/6db5aa862a49de8667f2a7b9b0bf2022/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+73            <meta-data
+73-->[androidx.emoji2:emoji2:1.2.0] /Users/wai/.gradle/caches/transforms-3/6db5aa862a49de8667f2a7b9b0bf2022/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+74                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+74-->[androidx.emoji2:emoji2:1.2.0] /Users/wai/.gradle/caches/transforms-3/6db5aa862a49de8667f2a7b9b0bf2022/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+75                android:value="androidx.startup" />
+75-->[androidx.emoji2:emoji2:1.2.0] /Users/wai/.gradle/caches/transforms-3/6db5aa862a49de8667f2a7b9b0bf2022/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+76            <meta-data
+76-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/wai/.gradle/caches/transforms-3/adfd241d31aa0dc8d9176e9f5dfaa47e/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+77                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+77-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/wai/.gradle/caches/transforms-3/adfd241d31aa0dc8d9176e9f5dfaa47e/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+78                android:value="androidx.startup" />
+78-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/wai/.gradle/caches/transforms-3/adfd241d31aa0dc8d9176e9f5dfaa47e/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+79            <meta-data
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+80                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+81                android:value="androidx.startup" />
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+82        </provider>
+83
+84        <receiver
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+85            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+86            android:directBootAware="false"
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+87            android:enabled="true"
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+88            android:exported="true"
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+89            android:permission="android.permission.DUMP" >
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+90            <intent-filter>
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+91                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+92            </intent-filter>
+93            <intent-filter>
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+94                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+95            </intent-filter>
+96            <intent-filter>
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+97                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+98            </intent-filter>
+99            <intent-filter>
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+100                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/wai/.gradle/caches/transforms-3/0db8f035745ab68a2782efc838399652/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+101            </intent-filter>
+102        </receiver>
+103    </application>
+104
+105</manifest>
