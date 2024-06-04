@@ -42,7 +42,53 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        Button buttonFunction1 = findViewById(R.id.buttonFunction1);
+        Button calenderBtn = findViewById(R.id.calender_btn);
+        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                // Pass the username to CalendarActivity
+                intent.putExtra("USERNAME", username);
+                startActivity(intent);
+            }
+        });
+
+        // Button for review Account Information
+        Button accountInfoBtn = findViewById(R.id.accountinfo_btn);
+        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                // Pass the username to CalendarActivity
+                intent.putExtra("USERNAME", username);
+                startActivity(intent);
+            }
+        });
+
+        // Button for Booking Appointment
+        Button bookappointBtn = findViewById(R.id.bookAppoint_btn);
+        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                // Pass the username to CalendarActivity
+                intent.putExtra("USERNAME", username);
+                startActivity(intent);
+            }
+        });
+
+        Button babyimageBtn = findViewById(R.id.babyImage_btn);
+        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                // Pass the username to CalendarActivity
+                intent.putExtra("USERNAME", username);
+                startActivity(intent);
+            }
+        });
+
+        Button revDocBtn = findViewById(R.id.reviewDoc_btn);
         buttonFunction1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

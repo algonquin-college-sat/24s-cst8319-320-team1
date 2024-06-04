@@ -19,7 +19,7 @@
 
     <!-- Button for Function 1 -->
     <Button
-        android:id="@+id/buttonFunction1"
+        android:id="@+id/calender_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/welcome_message"
@@ -29,22 +29,42 @@
 
     <!-- Button for Function 2 -->
     <Button
-        android:id="@+id/buttonFunction2"
+        android:id="@+id/accountinfo_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonFunction1"
         android:layout_marginTop="20dp"
-        android:text="Recipe"
+        android:text="Account Profile"
         android:background="#FFC107" />
 
     <!-- Button for Function 3 -->
     <Button
-        android:id="@+id/buttonFunction3"
+        android:id="@+id/bookAppoint_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonFunction2"
         android:layout_marginTop="20dp"
-        android:text="Function3"
+        android:text="Booking Appointment"
+        android:background="#FFC107" />
+
+        <!-- Button for Function 4 -->
+    <Button
+        android:id="@+id/babyImage_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonFunction2"
+        android:layout_marginTop="20dp"
+        android:text="Baby Illustration Images"
+        android:background="#FFC107" />
+
+        <!-- Button for Function 5 -->
+    <Button
+        android:id="@+id/reviewDoc_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonFunction2"
+        android:layout_marginTop="20dp"
+        android:text="Review Documents"
         android:background="#FFC107" />
 
     <!-- Button to Return to Login Page -->
