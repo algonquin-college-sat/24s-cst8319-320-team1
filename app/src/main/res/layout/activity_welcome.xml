@@ -32,7 +32,7 @@
         android:id="@+id/accountinfo_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonFunction1"
+        android:layout_below="@id/calender_btn"
         android:layout_marginTop="20dp"
         android:text="Account Profile"
         android:background="#FFC107" />
@@ -42,7 +42,7 @@
         android:id="@+id/bookAppoint_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonFunction2"
+        android:layout_below="@id/accountinfo_btn"
         android:layout_marginTop="20dp"
         android:text="Booking Appointment"
         android:background="#FFC107" />
@@ -52,7 +52,7 @@
         android:id="@+id/babyImage_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonFunction2"
+        android:layout_below="@id/bookAppoint_btn"
         android:layout_marginTop="20dp"
         android:text="Baby Illustration Images"
         android:background="#FFC107" />
@@ -62,7 +62,7 @@
         android:id="@+id/reviewDoc_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonFunction2"
+        android:layout_below="@id/babyImage_btn"
         android:layout_marginTop="20dp"
         android:text="Review Documents"
         android:background="#FFC107" />
@@ -72,7 +72,7 @@
         android:id="@+id/logout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonFunction3"
+        android:layout_below="@id/reviewDoc_btn"
         android:layout_marginTop="20dp"
         android:text="Back to Login"
         android:background="#D3D3D3" />

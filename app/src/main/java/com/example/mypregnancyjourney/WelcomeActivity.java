@@ -43,10 +43,10 @@ public class WelcomeActivity extends AppCompatActivity {
         });
 
         Button calenderBtn = findViewById(R.id.calender_btn);
-        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+        calenderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
@@ -55,7 +55,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Button for review Account Information
         Button accountInfoBtn = findViewById(R.id.accountinfo_btn);
-        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+        accountInfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
@@ -67,10 +67,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Button for Booking Appointment
         Button bookappointBtn = findViewById(R.id.bookAppoint_btn);
-        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+        bookappointBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
@@ -78,21 +78,21 @@ public class WelcomeActivity extends AppCompatActivity {
         });
 
         Button babyimageBtn = findViewById(R.id.babyImage_btn);
-        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+        babyimageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
             }
         });
 
-        Button revDocBtn = findViewById(R.id.reviewDoc_btn);
-        buttonFunction1.setOnClickListener(new View.OnClickListener() {
+        Button reviewDocBtn = findViewById(R.id.reviewDoc_btn);
+        reviewDocBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);

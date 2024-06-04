@@ -3148,6 +3148,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id accountinfo_btn
 id action0
 id actionDown
 id actionDownUp
@@ -3188,6 +3189,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id babyImage_btn
 id backButton
 id backHomeButton
 id back_button
@@ -3197,17 +3199,16 @@ id beginOnFirstDraw
 id beginning
 id bestChoice
 id blocking
+id bookAppoint_btn
 id bottom
 id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
-id buttonFunction1
-id buttonFunction2
-id buttonFunction3
 id buttonPanel
 id cache_measures
 id calendar
+id calender_btn
 id callMeasure
 id cancel_action
 id cancel_button
@@ -3506,6 +3507,7 @@ id register_button
 id report_drawn
 id reset_password_button
 id reverseSawtooth
+id reviewDoc_btn
 id right
 id rightToLeft
 id right_icon

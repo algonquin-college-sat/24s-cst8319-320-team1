@@ -5,13 +5,14 @@ color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable logo
+id accountinfo_btn
+id babyImage_btn
 id backButton
 id backHomeButton
 id back_button
-id buttonFunction1
-id buttonFunction2
-id buttonFunction3
+id bookAppoint_btn
 id calendar
+id calender_btn
 id confirm_new_password
 id confirm_password
 id dateTextView
@@ -34,6 +35,7 @@ id nextSevenDaysButton
 id password
 id register_button
 id reset_password_button
+id reviewDoc_btn
 id saveButton
 id signup_button
 id toggle_confirm_new_password_visibility
