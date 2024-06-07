@@ -1,12 +1,13 @@
 package com.example.mypregnancyjourney;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.mypregnancyjourney.reviewdoc.ReviewDocActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -92,9 +93,9 @@ public class WelcomeActivity extends AppCompatActivity {
         reviewDocBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
-                // Pass the username to CalendarActivity
-                intent.putExtra("USERNAME", username);
+                // Go to ReviewDoc Page
+                Intent intent = new Intent(getApplicationContext(), ReviewDocActivity.class);
+                // intent.putExtra("USERNAME", username);
                 startActivity(intent);
             }
         });
