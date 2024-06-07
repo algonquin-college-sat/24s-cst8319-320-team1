@@ -12,5 +12,6 @@ public class BookingContract {
         public static final String COLUMN_NAME_EMAIL = "email";
         public static final String COLUMN_NAME_TIMESLOT_ID = "t_id";
         public static final String COLUMN_NAME_STATUS = "status";
+        public static final String COLUMN_NAME_DATE = "date";
     }
 }
