@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class EventDbHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "EventDatabase.db";
+    private static final String DATABASE_NAME = "PregnancyApp.db";
     private static final int DATABASE_VERSION = 9;
 
     private static final String SQL_CREATE_ENTRIES =
