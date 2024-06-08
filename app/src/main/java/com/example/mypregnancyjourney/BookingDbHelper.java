@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.SQLException;
 import android.content.ContentValues;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
 
@@ -62,7 +65,7 @@ public class BookingDbHelper extends SQLiteOpenHelper {
                     COL_BOOKING_EMAIL + " TEXT," +
                     COL_BOOKING_STATUS + "TEXT," +
                     COL_BOOKING_TIMESLOT_ID + " INTEGER, " +
-                    COL_BOOKING_DATE + " DATE, " +
+                    COL_BOOKING_DATE + " TEXT, " +
                     "FOREIGN KEY(" + COL_BOOKING_EMAIL + ") REFERENCES users (email)," +
                     " FOREIGN KEY(" + COL_BOOKING_TIMESLOT_ID + ") REFERENCES timeslots (t_id),"+
                     "UNIQUE (COL_BOOKING_TIMESLOT_ID))";
@@ -75,9 +78,9 @@ public class BookingDbHelper extends SQLiteOpenHelper {
                     COL_TIMESLOT_SERVICE_ID + " INTEGER," +
                     COL_TIMESLOT_TIME + " TEXT," +
                     COL_TIMESLOT_ISBOOKED + " BOOLEAN," +
-                    COL_TIMESLOT_DATE + " DATE, " +
+                    COL_TIMESLOT_DATE + " TEXT, " +
                     "FOREIGN KEY(" + COL_TIMESLOT_CLINIC_ID + ") REFERENCES clinics (c_id)," +
-                    " FOREIGN KEY(" + COL_TIMESLOT_SERVICE_ID + ") REFERENCES Service(s_id))";
+                    " FOREIGN KEY(" + COL_TIMESLOT_SERVICE_ID + ") REFERENCES services (s_id))";
 
     // Clinic table create statement
     private static final String CREATE_TABLE_CLINIC =
@@ -115,6 +118,34 @@ public class BookingDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_BOOKING);
         db.execSQL(CREATE_TABLE_TIMESLOTS);
         db.execSQL(CREATE_TABLE_CLINIC);
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void insertInitialData(){
+//        ContentValues values = new ContentValues();
+//
+//        // Insert initial services and locations
+//        ContentValues values = new ContentValues();
+        insertService("3D Ultrasound Test");
+        insertService("Prenatal Visit");
+        insertService("Genetic Screening");
+        insertService("Non-Stress Test");
+        insertService("Blood tests");
+        insertService("Vaccinations");
+
+        insertClinic("Orci Lacus Industries","8074 Sit Avenue","R3Z 2S8","chan0527@gmail.com","(561) 713-6495");
+        insertClinic("Eu Nibh Corp.","156-3534 Et, Road","H8H 4A6","sagittis.duis.gravida@gmail.com","(855) 622-4774");
+        insertClinic("Non Limited","Ap #365-773 Risus. St.","T2L 1L0","curabitur.sed.tortor@gmail.com","(435) 875-5998");
+        insertClinic("Magna Company","Ap #799-8656 Magna Rd.","62P 1R6","vitae@gmail.com","(858) 719-5478");
+        insertClinic("Mi Duis Risus Company","270-7307 Molestie Road","E2P 7N3","aenean.gravida@gmail.com","(547) 231-1641");
+
+        insertTimeslot(1,1,"09:00 AM - 10:00 AM", false, LocalDate.of(2024,06,10));
+        insertTimeslot(1,1,"11:00 AM - 12:00 AM", false, LocalDate.of(2024,06,10));
+        insertTimeslot(1,1,"01:00 PM - 02:00 PM", false, LocalDate.of(2024,06,10));
+        insertTimeslot(1,2,"01:00 PM - 02:00 PM", false, LocalDate.of(2024,06,10));
+        insertTimeslot(1,1,"09:00 AM - 10:00 AM", false, LocalDate.of(2024,06,10));
+        insertTimeslot(1,1,"11:00 AM - 12:00 AM", false, LocalDate.of(2024,06,10));
 
     }
 
@@ -241,7 +272,7 @@ public class BookingDbHelper extends SQLiteOpenHelper {
 
     // ------------------------ "Clinic" table methods ----------------//
 
-    public long createClinic(String name, String addr, String postalCode, String email, String phone) {
+    public long insertClinic(String name, String addr, String postalCode, String email, String phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_CLINIC_NAME, name);
