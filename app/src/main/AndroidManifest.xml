@@ -47,6 +47,23 @@
         </activity>
         <activity android:name=".BookingActivity"
             android:exported="false"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <activity android:name=".TimeslotsActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

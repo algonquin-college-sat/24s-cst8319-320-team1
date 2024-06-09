@@ -3098,6 +3098,8 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable test_level_drawable
+drawable timeslot_background
+drawable timeslot_selected_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -3148,6 +3150,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id accountinfo_btn
 id action0
 id actionDown
 id actionDownUp
@@ -3188,6 +3191,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id babyImage_btn
 id backButton
 id backHomeButton
 id back_button
@@ -3197,17 +3201,20 @@ id beginOnFirstDraw
 id beginning
 id bestChoice
 id blocking
+id bookAppoint_btn
+id bookingTitle
 id bottom
 id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
-id buttonFunction1
-id buttonFunction2
-id buttonFunction3
 id buttonPanel
+id button_back
+id button_confirm
 id cache_measures
 id calendar
+id calendar_icon
+id calender_btn
 id callMeasure
 id cancel_action
 id cancel_button
@@ -3224,7 +3231,11 @@ id checkbox
 id checked
 id chronometer
 id circle_center
+id cityLabel
+id city_spinner
 id clear_text
+id clinicLabel
+id clinic_spinner
 id clip_horizontal
 id clip_vertical
 id clockwise
@@ -3498,6 +3509,8 @@ id pressed
 id previous
 id progress_circular
 id progress_horizontal
+id provinceLabel
+id province_spinner
 id radio
 id range
 id ratio
@@ -3506,6 +3519,7 @@ id register_button
 id report_drawn
 id reset_password_button
 id reverseSawtooth
+id reviewDoc_btn
 id right
 id rightToLeft
 id right_icon
@@ -3523,6 +3537,7 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
+id scrollView2
 id scrollable
 id search_badge
 id search_bar
@@ -3536,7 +3551,10 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id selected
+id selected_date
 id selection_type
+id serviceLabel
+id service_spinner
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -3611,6 +3629,8 @@ id textinput_prefix_text
 id textinput_suffix_text
 id thursday
 id time
+id timeslotsTitle
+id timeslots_container
 id title
 id titleDividerNoCustom
 id title_template
@@ -3773,6 +3793,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_booking
 layout activity_calendar
 layout activity_last_seven_days
 layout activity_log_in
@@ -3781,6 +3802,7 @@ layout activity_next_seven_days
 layout activity_note
 layout activity_reset_password
 layout activity_sign_up
+layout activity_timeslots
 layout activity_welcome
 layout calendar_view
 layout custom_dialog

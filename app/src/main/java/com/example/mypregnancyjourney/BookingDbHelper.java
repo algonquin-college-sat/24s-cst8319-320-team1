@@ -11,45 +11,49 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class BookingDbHelper extends SQLiteOpenHelper {
 
     // Database Name and Version
-    private static final String DATABASE_NAME = "PregnancyApp.db";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "Booking.db";
+    public static final int DATABASE_VERSION = 1;
 
     // Table Names
-    private static final String TABLE_SERVICE = ServicesContract.ServicesEntry.TABLE_NAME;
-    private static final String TABLE_BOOKING = BookingContract.BookingEntry.TABLE_NAME;
-    private static final String TABLE_TIMESLOTS = TimeslotsContract.TimeslotEntry.TABLE_NAME;
-    private static final String TABLE_CLINIC = ClinicContract.ClinicEntry.TABLE_NAME;
+    public static final String TABLE_SERVICE = ServicesContract.ServicesEntry.TABLE_NAME;
+    public static final String TABLE_BOOKING = BookingContract.BookingEntry.TABLE_NAME;
+    public static final String TABLE_TIMESLOTS = TimeslotsContract.TimeslotEntry.TABLE_NAME;
+    public static final String TABLE_CLINIC = ClinicContract.ClinicEntry.TABLE_NAME;
 
     // Service Table - column names
-    private static final String COL_SERVICE_ID = ServicesContract.ServicesEntry.COLUMN_NAME_SERVICE_ID;
-    private static final String COL_SERVICE_NAME = ServicesContract.ServicesEntry.COLUMN_NAME_SERVICE;
+    public static final String COL_SERVICE_ID = ServicesContract.ServicesEntry.COLUMN_NAME_SERVICE_ID;
+    public static final String COL_SERVICE_NAME = ServicesContract.ServicesEntry.COLUMN_NAME_SERVICE;
 
     // Booking Table - column names
-    private static final String COL_BOOKING_ID = BookingContract.BookingEntry.COLUMN_NAME_BOOKING_ID;
-    private static final String COL_BOOKING_EMAIL = BookingContract.BookingEntry.COLUMN_NAME_EMAIL;
-    private static final String COL_BOOKING_TIMESLOT_ID =  BookingContract.BookingEntry.COLUMN_NAME_TIMESLOT_ID;
-    private static final String COL_BOOKING_STATUS =  BookingContract.BookingEntry.COLUMN_NAME_STATUS;
-    private static final String COL_BOOKING_DATE =  BookingContract.BookingEntry.COLUMN_NAME_DATE;
+    public static final String COL_BOOKING_ID = BookingContract.BookingEntry.COLUMN_NAME_BOOKING_ID;
+    public static final String COL_BOOKING_EMAIL = BookingContract.BookingEntry.COLUMN_NAME_EMAIL;
+    public static final String COL_BOOKING_TIMESLOT_ID =  BookingContract.BookingEntry.COLUMN_NAME_TIMESLOT_ID;
+    public static final String COL_BOOKING_STATUS =  BookingContract.BookingEntry.COLUMN_NAME_STATUS;
+    public static final String COL_BOOKING_DATE =  BookingContract.BookingEntry.COLUMN_NAME_DATE;
 
     // Timeslots Table - column names
-    private static final String COL_TIMESLOT_ID = TimeslotsContract.TimeslotEntry.COLUMN_NAME_TIMESLOT_ID;
-    private static final String COL_TIMESLOT_CLINIC_ID = TimeslotsContract.TimeslotEntry.COLUMN_NAME_CLINIC_ID;
-    private static final String COL_TIMESLOT_SERVICE_ID = TimeslotsContract.TimeslotEntry.COLUMN_NAME_SERVICE_ID;
-    private static final String COL_TIMESLOT_TIME = TimeslotsContract.TimeslotEntry.COLUMN_NAME_TIME;
-    private static final String COL_TIMESLOT_ISBOOKED = TimeslotsContract.TimeslotEntry.COLUMN_NAME_ISBOOKED;
-    private static final String COL_TIMESLOT_DATE = TimeslotsContract.TimeslotEntry.COLUMN_NAME_DATE;
+    public static final String COL_TIMESLOT_ID = TimeslotsContract.TimeslotEntry.COLUMN_NAME_TIMESLOT_ID;
+    public static final String COL_TIMESLOT_CLINIC_ID = TimeslotsContract.TimeslotEntry.COLUMN_NAME_CLINIC_ID;
+    public static final String COL_TIMESLOT_SERVICE_ID = TimeslotsContract.TimeslotEntry.COLUMN_NAME_SERVICE_ID;
+    public static final String COL_TIMESLOT_TIME = TimeslotsContract.TimeslotEntry.COLUMN_NAME_TIME;
+    public static final String COL_TIMESLOT_ISBOOKED = TimeslotsContract.TimeslotEntry.COLUMN_NAME_ISBOOKED;
+    public static final String COL_TIMESLOT_DATE = TimeslotsContract.TimeslotEntry.COLUMN_NAME_DATE;
 
     // Clinic Table - column names
-    private static final String COL_CLINIC_ID = ClinicContract.ClinicEntry.COLUMN_NAME_CLINIC_ID;
-    private static final String COL_CLINIC_NAME = ClinicContract.ClinicEntry.COLUMN_NAME_CLINIC_NAME;
-    private static final String COL_CLINIC_ADDR = ClinicContract.ClinicEntry.COLUMN_NAME_ADDRESS;
-    private static final String COL_CLINIC_POSTAL_CODE = ClinicContract.ClinicEntry.COLUMN_NAME_POSTAL_CODE;
-    private static final String COL_CLINIC_EMAIL = ClinicContract.ClinicEntry.COLUMN_NAME_EMAIL;
-    private static final String COL_CLINIC_PHONE = ClinicContract.ClinicEntry.COLUMN_NAME_PHONE;
+    public static final String COL_CLINIC_ID = ClinicContract.ClinicEntry.COLUMN_NAME_CLINIC_ID;
+    public static final String COL_CLINIC_NAME = ClinicContract.ClinicEntry.COLUMN_NAME_CLINIC_NAME;
+    public static final String COL_CLINIC_STREET = ClinicContract.ClinicEntry.COLUMN_NAME_STREET;
+    public static final String COL_CLINIC_CITY = ClinicContract.ClinicEntry.COLUMN_NAME_CITY;
+    public static final String COL_CLINIC_PROVINCE = ClinicContract.ClinicEntry.COLUMN_NAME_PROVINCE;
+    public static final String COL_CLINIC_POSTAL_CODE = ClinicContract.ClinicEntry.COLUMN_NAME_POSTAL_CODE;
+    public static final String COL_CLINIC_EMAIL = ClinicContract.ClinicEntry.COLUMN_NAME_EMAIL;
+    public static final String COL_CLINIC_PHONE = ClinicContract.ClinicEntry.COLUMN_NAME_PHONE;
 
     // Table Create Statements
     // Service table create statement
@@ -58,17 +62,17 @@ public class BookingDbHelper extends SQLiteOpenHelper {
                     COL_SERVICE_ID + " INTEGER PRIMARY KEY," +
                     COL_SERVICE_NAME + " TEXT)";
 
-    // Booking table create statement
-    private static final String CREATE_TABLE_BOOKING =
-            "CREATE TABLE IF NOT EXISTS " + TABLE_BOOKING + "(" +
-                    COL_BOOKING_ID + " INTEGER PRIMARY KEY," +
-                    COL_BOOKING_EMAIL + " TEXT," +
-                    COL_BOOKING_STATUS + "TEXT," +
-                    COL_BOOKING_TIMESLOT_ID + " INTEGER, " +
-                    COL_BOOKING_DATE + " TEXT, " +
-                    "FOREIGN KEY(" + COL_BOOKING_EMAIL + ") REFERENCES users (email)," +
-                    " FOREIGN KEY(" + COL_BOOKING_TIMESLOT_ID + ") REFERENCES timeslots (t_id),"+
-                    "UNIQUE (COL_BOOKING_TIMESLOT_ID))";
+    // Clinic table create statement
+    private static final String CREATE_TABLE_CLINIC =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_CLINIC + "(" +
+                    COL_CLINIC_ID + " INTEGER PRIMARY KEY," +
+                    COL_CLINIC_NAME + " TEXT," +
+                    COL_CLINIC_STREET + " TEXT," +
+                    COL_CLINIC_CITY + " TEXT, " +
+                    COL_CLINIC_PROVINCE + " TEXT, " +
+                    COL_CLINIC_POSTAL_CODE + " TEXT," +
+                    COL_CLINIC_EMAIL + " TEXT," +
+                    COL_CLINIC_PHONE + " TEXT)";
 
     // Timeslots table create statement
     private static final String CREATE_TABLE_TIMESLOTS =
@@ -78,19 +82,22 @@ public class BookingDbHelper extends SQLiteOpenHelper {
                     COL_TIMESLOT_SERVICE_ID + " INTEGER," +
                     COL_TIMESLOT_TIME + " TEXT," +
                     COL_TIMESLOT_ISBOOKED + " BOOLEAN," +
-                    COL_TIMESLOT_DATE + " TEXT, " +
-                    "FOREIGN KEY(" + COL_TIMESLOT_CLINIC_ID + ") REFERENCES clinics (c_id)," +
-                    " FOREIGN KEY(" + COL_TIMESLOT_SERVICE_ID + ") REFERENCES services (s_id))";
+                    COL_TIMESLOT_DATE + " TEXT )";
+//                    "FOREIGN KEY(" + COL_TIMESLOT_CLINIC_ID + ") REFERENCES clinics (c_id)," +
+//                    " FOREIGN KEY(" + COL_TIMESLOT_SERVICE_ID + ") REFERENCES services (s_id))";
 
-    // Clinic table create statement
-    private static final String CREATE_TABLE_CLINIC =
-            "CREATE TABLE IF NOT EXISTS " + TABLE_CLINIC + "(" +
-                    COL_CLINIC_ID + " INTEGER PRIMARY KEY," +
-                    COL_CLINIC_NAME + " TEXT," +
-                    COL_CLINIC_ADDR + " TEXT," +
-                    COL_CLINIC_POSTAL_CODE + " TEXT," +
-                    COL_CLINIC_EMAIL + " TEXT," +
-                    COL_CLINIC_PHONE + " TEXT)";
+    // Booking table create statement
+    private static final String CREATE_TABLE_BOOKING =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_BOOKING + "(" +
+                    COL_BOOKING_ID + " INTEGER PRIMARY KEY," +
+                    COL_BOOKING_EMAIL + " TEXT," +
+                    COL_BOOKING_STATUS + "TEXT," +
+                    COL_BOOKING_TIMESLOT_ID + " INTEGER, " +
+                    COL_BOOKING_DATE + " TEXT ) ";
+//                    "FOREIGN KEY(" + COL_BOOKING_EMAIL + ") REFERENCES users (email)," +
+//                    "FOREIGN KEY(" + COL_BOOKING_TIMESLOT_ID + ") REFERENCES timeslots (t_id),"+
+//                    "UNIQUE (COL_BOOKING_TIMESLOT_ID))";
+
 
     // Service table delete statement
     private static final String DELETE_TABLE_SERVICE =
@@ -119,33 +126,58 @@ public class BookingDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TIMESLOTS);
         db.execSQL(CREATE_TABLE_CLINIC);
 
+        // Insert initial data
+        insertInitialData(db);
+
+        // Generate timeslots programmatically
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            generateTimeslots(db, 1, 1, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 1, 2, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 1, 3, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 1, 4, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 1, 5, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 1, 6, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 2, 1, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 2, 2, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 2, 3, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 2, 4, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 2, 5, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 2, 6, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 3, 1, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 3, 2, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 3, 3, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 3, 4, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 3, 5, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 3, 6, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 4, 1, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 4, 2, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 4, 3, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 4, 4, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 4, 5, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 4, 6, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 5, 1, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 5, 2, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 5, 3, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 5, 4, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 5, 5, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+            generateTimeslots(db, 5, 6, "2024-06-10", "2024-06-28", "09:00 AM", "05:00 PM", 60);
+        }
+
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void insertInitialData(){
-//        ContentValues values = new ContentValues();
-//
-//        // Insert initial services and locations
-//        ContentValues values = new ContentValues();
-        insertService("3D Ultrasound Test");
-        insertService("Prenatal Visit");
-        insertService("Genetic Screening");
-        insertService("Non-Stress Test");
-        insertService("Blood tests");
-        insertService("Vaccinations");
+    private void insertInitialData(SQLiteDatabase db){
+        insertService(db,"3D Ultrasound Test");
+        insertService(db,"Prenatal Visit");
+        insertService(db,"Genetic Screening");
+        insertService(db,"Non-Stress Test");
+        insertService(db,"Blood tests");
+        insertService(db,"Vaccinations");
 
-        insertClinic("Orci Lacus Industries","8074 Sit Avenue","R3Z 2S8","chan0527@gmail.com","(561) 713-6495");
-        insertClinic("Eu Nibh Corp.","156-3534 Et, Road","H8H 4A6","sagittis.duis.gravida@gmail.com","(855) 622-4774");
-        insertClinic("Non Limited","Ap #365-773 Risus. St.","T2L 1L0","curabitur.sed.tortor@gmail.com","(435) 875-5998");
-        insertClinic("Magna Company","Ap #799-8656 Magna Rd.","62P 1R6","vitae@gmail.com","(858) 719-5478");
-        insertClinic("Mi Duis Risus Company","270-7307 Molestie Road","E2P 7N3","aenean.gravida@gmail.com","(547) 231-1641");
-
-        insertTimeslot(1,1,"09:00 AM - 10:00 AM", false, LocalDate.of(2024,06,10));
-        insertTimeslot(1,1,"11:00 AM - 12:00 AM", false, LocalDate.of(2024,06,10));
-        insertTimeslot(1,1,"01:00 PM - 02:00 PM", false, LocalDate.of(2024,06,10));
-        insertTimeslot(1,2,"01:00 PM - 02:00 PM", false, LocalDate.of(2024,06,10));
-        insertTimeslot(1,1,"09:00 AM - 10:00 AM", false, LocalDate.of(2024,06,10));
-        insertTimeslot(1,1,"11:00 AM - 12:00 AM", false, LocalDate.of(2024,06,10));
+        insertClinic(db,"RAWSKN","2417 Holly Lane Unit 212E", "Ottawa","Ontario","K1V 7P2","chan0527@gmail.com","(561) 713-6495");
+        insertClinic(db,"UC BABY Ottawa","1300 Baseline Road","Ottawa","Ontario","K2C 0A9","chan0527@gmail.com","(855) 622-4774");
+        insertClinic(db,"A Date With Baby","20 De Boers Drive Suite 220","Toronto","Ontario","M3J 0H1","chan0527@gmail.com","(435) 875-5998");
+        insertClinic(db,"Baby in Sight 3D / 4D Fetal Ultrasound","8312 McCowan Rd., Unit 204B","Markham","Ontario","L3P 8E1","chan0527@gmail.com","(858) 719-5478");
+        insertClinic(db,"Institut Maïa","1139 Boulevard de la Cité-des-Jeunes","Vaudreuil-Dorion","Quebec","J7V 0H2","chan0527@gmail.com","(547) 231-1641");
 
     }
 
@@ -160,8 +192,8 @@ public class BookingDbHelper extends SQLiteOpenHelper {
 
     // ------------------------ "Service" table methods ----------------//
 
-    public long insertService(String service) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public long insertService(SQLiteDatabase db, String service) {
+//        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_SERVICE_NAME, service);
 
@@ -233,6 +265,36 @@ public class BookingDbHelper extends SQLiteOpenHelper {
 
     // ------------------------ "Timeslots" table methods ----------------//
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void generateTimeslots(SQLiteDatabase db, int clinic_id, int service_id, String startDate, String endDate, String startTime, String endTime, int intervalMinutes){
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+
+        LocalDate start = LocalDate.parse(startDate, dateFormatter);
+        LocalDate end = LocalDate.parse(endDate, dateFormatter);
+
+        while (!start.isAfter(end)) {
+            LocalTime startT = LocalTime.parse(startTime, timeFormatter);
+            LocalTime endT = LocalTime.parse(endTime, timeFormatter);
+
+            while (!startT.isAfter(endT.minusMinutes(intervalMinutes))) {
+                LocalTime nextT = startT.plusMinutes(intervalMinutes);
+                String timeslot = startT.format(timeFormatter) + " - " + nextT.format(timeFormatter);
+
+                ContentValues values = new ContentValues();
+                values.put(COL_TIMESLOT_CLINIC_ID, clinic_id);
+                values.put(COL_TIMESLOT_SERVICE_ID, service_id);
+                values.put(COL_TIMESLOT_TIME, timeslot);
+                values.put(COL_TIMESLOT_ISBOOKED, false);
+                values.put(COL_TIMESLOT_DATE, start.format(dateFormatter));
+
+                db.insert(TABLE_TIMESLOTS, null, values);
+                startT = nextT;
+            }
+            start = start.plusDays(1);
+        }
+    }
+
     public long insertTimeslot(int clinic_id, int service_id, String time, boolean isBooked, LocalDate date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -272,11 +334,13 @@ public class BookingDbHelper extends SQLiteOpenHelper {
 
     // ------------------------ "Clinic" table methods ----------------//
 
-    public long insertClinic(String name, String addr, String postalCode, String email, String phone) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public long insertClinic(SQLiteDatabase db,String name, String street, String city, String province, String postalCode, String email, String phone) {
+//        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_CLINIC_NAME, name);
-        values.put(COL_CLINIC_ADDR, addr);
+        values.put(COL_CLINIC_STREET, street);
+        values.put(COL_CLINIC_CITY, city);
+        values.put(COL_CLINIC_PROVINCE, province);
         values.put(COL_CLINIC_POSTAL_CODE, postalCode);
         values.put(COL_CLINIC_EMAIL, email);
         values.put(COL_CLINIC_PHONE, phone);
@@ -307,5 +371,43 @@ public class BookingDbHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(selectQuery, null);
 
         return c;
+    }
+
+    // Fetch unique provinces
+    public Cursor getUniqueProvinces() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT DISTINCT " + COL_CLINIC_PROVINCE + " FROM " + TABLE_CLINIC;
+        return db.rawQuery(selectQuery, null);
+    }
+
+    // Fetch cities based on selected province
+    public Cursor getCitiesByProvince(String province) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT DISTINCT " + COL_CLINIC_CITY + " FROM " + TABLE_CLINIC + " WHERE " + COL_CLINIC_PROVINCE + " = ?";
+        return db.rawQuery(selectQuery, new String[]{province});
+    }
+
+    // Fetch services based on selected province and city
+    public Cursor getServicesByProvinceAndCity(String province, String city) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT " + TABLE_SERVICE + "." + COL_SERVICE_NAME +
+                " FROM " + TABLE_SERVICE + " WHERE " + TABLE_SERVICE + "." + COL_SERVICE_ID + " IN ( SELECT DISTINCT " +
+                TABLE_TIMESLOTS + "." + COL_TIMESLOT_SERVICE_ID + " FROM " +TABLE_TIMESLOTS +" INNER JOIN " + TABLE_CLINIC + " ON " +
+                TABLE_TIMESLOTS+"."+COL_TIMESLOT_CLINIC_ID +"="+TABLE_CLINIC+"."+COL_CLINIC_ID+" WHERE "+ TABLE_CLINIC+"."+COL_CLINIC_PROVINCE+ " = ? AND "+
+                TABLE_CLINIC+"."+COL_CLINIC_CITY+"= ? )";
+        return db.rawQuery(selectQuery, new String[]{province, city});
+
+    }
+
+    // Fetch clinics based on selected province, city, and service
+    public Cursor getClinicsByProvinceCityAndService(String province, String city, String service) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT DISTINCT " + TABLE_CLINIC +"."+ COL_CLINIC_NAME + " FROM " + TABLE_CLINIC +
+                " INNER JOIN " + TABLE_TIMESLOTS +" ON "+TABLE_CLINIC+"."+COL_CLINIC_ID +"="+TABLE_TIMESLOTS+"."+COL_TIMESLOT_CLINIC_ID+
+                " INNER JOIN " + TABLE_SERVICE +" ON "+ TABLE_TIMESLOTS+"."+COL_TIMESLOT_SERVICE_ID +" = "+TABLE_SERVICE+"."+COL_SERVICE_ID+
+                " WHERE " +TABLE_CLINIC+"."+COL_CLINIC_PROVINCE+" = ? AND " +
+                TABLE_CLINIC+"."+COL_CLINIC_CITY+" = ? AND "+
+                TABLE_SERVICE+"."+COL_SERVICE_NAME+" = ? ";
+        return db.rawQuery(selectQuery, new String[]{province, city, service});
     }
 }

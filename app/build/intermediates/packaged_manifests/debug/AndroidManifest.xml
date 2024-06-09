@@ -60,6 +60,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.mypregnancyjourney.BookingActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.mypregnancyjourney.TimeslotsActivity"
+            android:exported="false" />
 
         <provider
             android:name="com.prolificinteractive.materialcalendarview.MaterialCalendarViewInitProvider"

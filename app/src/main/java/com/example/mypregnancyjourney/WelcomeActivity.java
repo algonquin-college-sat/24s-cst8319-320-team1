@@ -15,6 +15,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+
+        BookingDbHelper dbHelper = new BookingDbHelper(this);
+
         // Retrieve the username from the intent
         String username = getIntent().getStringExtra("USERNAME");
         if (username != null) {
@@ -72,7 +75,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BookingActivity.class); // input your class
                 // Pass the username to CalendarActivity
-//                intent.putExtra("USERNAME", username);
+                intent.putExtra("USERNAME", username);
                 startActivity(intent);
             }
         });

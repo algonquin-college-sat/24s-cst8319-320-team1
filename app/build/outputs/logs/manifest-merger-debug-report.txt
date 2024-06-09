@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:1-50:12
-INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:1-50:12
-INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:1-50:12
-INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:1-50:12
+ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:1-69:12
+INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:1-69:12
+INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:1-69:12
+INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:1-69:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/wai/.gradle/caches/transforms-3/99dc24b8086e9e02f60cbc0643cdc897/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/wai/.gradle/caches/transforms-3/1f371f754bd6786f9a76f8e2fd18482b/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
 MERGED from [com.github.prolificinteractive:material-calendarview:2.0.0] /Users/wai/.gradle/caches/transforms-3/546c335529cd49005015ce50fd123f9c/transformed/jetified-material-calendarview-2.0.0/AndroidManifest.xml:2:1-19:12
@@ -64,8 +64,8 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/wai/.grad
 	xmlns:android
 		ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:5:5-48:19
-INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:5:5-48:19
+ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:5:5-67:19
+INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:5:5-67:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/wai/.gradle/caches/transforms-3/99dc24b8086e9e02f60cbc0643cdc897/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/wai/.gradle/caches/transforms-3/99dc24b8086e9e02f60cbc0643cdc897/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/wai/.gradle/caches/transforms-3/1f371f754bd6786f9a76f8e2fd18482b/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -172,6 +172,18 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:45:17-77
 	android:name
 		ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:45:27-74
+activity#com.example.mypregnancyjourney.BookingActivity
+ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:48:9-49:39
+	android:exported
+		ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:49:13-37
+	android:name
+		ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:48:19-50
+activity#com.example.mypregnancyjourney.TimeslotsActivity
+ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:65:9-66:39
+	android:exported
+		ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:66:13-37
+	android:name
+		ADDED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml:65:19-52
 uses-sdk
 INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/src/main/AndroidManifest.xml
