@@ -16,10 +16,14 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
 
-        BookingDbHelper dbHelper = new BookingDbHelper(this);
+//        BookingDbHelper dbHelper = new BookingDbHelper(this);
 
         // Retrieve the username from the intent
         String username = getIntent().getStringExtra("USERNAME");
+
+        // Retrieve the user email from the intent
+        String userEmail = getIntent().getStringExtra("UserEmail");
+
         if (username != null) {
             // Set the welcome message with the username
             TextView welcomeMessage = findViewById(R.id.welcome_message); // Assume you have a TextView for the message
@@ -73,9 +77,10 @@ public class WelcomeActivity extends AppCompatActivity {
         bookappointBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BookingActivity.class); // input your class
+                Intent intent = new Intent(WelcomeActivity.this, BookingActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
+                intent.putExtra("UserEmail", userEmail);
                 startActivity(intent);
             }
         });

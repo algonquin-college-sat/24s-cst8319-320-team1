@@ -27,6 +27,9 @@ public class BookingActivity extends AppCompatActivity {
     private Spinner provinceSpinner, citySpinner, serviceSpinner, clinicSpinner;
     private Button searchBtn, backBtn;
 
+    private String selectedService, selectedClinic;
+    private int selectedService_id , selectedClinic_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,8 @@ public class BookingActivity extends AppCompatActivity {
         clinicSpinner = findViewById(R.id.clinic_spinner);
         searchBtn = findViewById(R.id.search_button);
         backBtn = findViewById(R.id.back_button);
+
+        String userEmail = getIntent().getStringExtra("UserEmail");
 
         populateProvinceSpinner();
 
@@ -58,6 +63,11 @@ public class BookingActivity extends AppCompatActivity {
 
         searchBtn.setOnClickListener(click-> {
                 Intent toTimeslots = new Intent(BookingActivity.this, TimeslotsActivity.class);
+                toTimeslots.putExtra("UserEmail",userEmail);
+                toTimeslots.putExtra("ServiceId_selected",selectedService_id);
+                toTimeslots.putExtra("ClinicId_selected",selectedClinic_id);
+                toTimeslots.putExtra("Service_selected",selectedService);
+                toTimeslots.putExtra("Clinic_selected", selectedClinic);
                 startActivity(toTimeslots);
         });
 
@@ -116,7 +126,9 @@ public class BookingActivity extends AppCompatActivity {
         serviceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedService = serviceSpinner.getSelectedItem().toString();
+                selectedService = serviceSpinner.getSelectedItem().toString();
+                selectedService_id = dbHelper.getServiceId(selectedService);
+                Log.d("BookingActivity","selectedService is "+selectedService + "; service id is "+ selectedService_id );
                 populateClinicSpinner(province, city, selectedService);
             }
 
@@ -136,6 +148,20 @@ public class BookingActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, clinics);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         clinicSpinner.setAdapter(adapter);
+
+        clinicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedClinic = clinicSpinner.getSelectedItem().toString();
+                selectedClinic_id = dbHelper.getClinicId(selectedClinic);
+                Log.d("BookingActivity","selectedClinic is "+selectedClinic + "; clinic id is "+ selectedClinic_id );
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Do nothing here
+            }
+        });
     }
 
 

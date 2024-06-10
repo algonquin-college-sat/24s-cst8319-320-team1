@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.SQLException;
 import android.content.ContentValues;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -215,6 +216,30 @@ public class BookingDbHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    // Get Service id  by Service name
+    public int getServiceId (String name){
+        if(name ==null || name.isEmpty()){
+            Log.e("BookingDbHelper","getServiceId method name parameter is null");
+            return -1;
+        }
+        SQLiteDatabase db = this.getReadableDatabase();
+        int serviceId = -1;
+
+        String selectQuery = "SELECT " + TABLE_SERVICE+"."+ COL_SERVICE_ID + " FROM " + TABLE_SERVICE + " WHERE "
+                + COL_SERVICE_NAME + " = ?" ;
+        Cursor c = db.rawQuery(selectQuery, new String[]{name});
+
+        if (c != null) {
+            if (c.moveToFirst()) {
+                serviceId = c.getInt(c.getColumnIndexOrThrow(COL_SERVICE_ID)); // Ensure service id is the first column in Services table
+            }
+            c.close();
+        }
+        db.close();
+
+        return serviceId;
+    }
+
     // Getting all services
     public Cursor getAllServices() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -363,6 +388,33 @@ public class BookingDbHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    // Get Clinic id  by clinic name
+    public int getClinicId (String name){
+
+        if(name ==null || name.isEmpty()){
+            Log.e("BookingDbHelper","getClinicId method name parameter is null");
+            return -1;
+        }
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        int clinicId = -1;
+
+        String selectQuery = "SELECT " + TABLE_CLINIC+"."+ COL_CLINIC_ID + " FROM " + TABLE_CLINIC + " WHERE "
+                + COL_CLINIC_NAME + " =  ?" ;
+
+        Cursor c = db.rawQuery(selectQuery, new String[]{name});
+
+        if (c != null) {
+            if (c.moveToFirst()) {
+                clinicId = c.getInt(c.getColumnIndexOrThrow(COL_CLINIC_ID));
+            }
+            c.close();
+        }
+        db.close();
+
+        return clinicId;
+    }
+
     // Getting all clinics
     public Cursor getAllClinics() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -372,6 +424,8 @@ public class BookingDbHelper extends SQLiteOpenHelper {
 
         return c;
     }
+
+
 
     // Fetch unique provinces
     public Cursor getUniqueProvinces() {
@@ -409,5 +463,29 @@ public class BookingDbHelper extends SQLiteOpenHelper {
                 TABLE_CLINIC+"."+COL_CLINIC_CITY+" = ? AND "+
                 TABLE_SERVICE+"."+COL_SERVICE_NAME+" = ? ";
         return db.rawQuery(selectQuery, new String[]{province, city, service});
+    }
+
+//    public Cursor getTimeslotByServiceClinicAndDate(String service, String clinic, String date){
+//        SQLiteDatabase db = this.getReadableDatabase();
+////        Select timeslots.time FROM timeslots INNER JOIN services ON timeslots.s_id = services.s_id INNER JOIN clinics ON timeslots.c_id = clinics.c_id WHERE services.service = "Prenatal Visit" AND clinics.name = "RAWSKN" AND timeslots.date = "2024-06-28";
+//        String selectQuery = "SELECT " + TABLE_TIMESLOTS+"."+COL_TIMESLOT_TIME +" FROM "+ TABLE_TIMESLOTS + " INNER JOIN "+
+//                TABLE_SERVICE + " ON " + TABLE_TIMESLOTS+"."+COL_TIMESLOT_SERVICE_ID+" = "+TABLE_SERVICE+"."+COL_SERVICE_ID+" INNER JOIN "+
+//                TABLE_CLINIC +" ON "+TABLE_TIMESLOTS+"."+COL_TIMESLOT_CLINIC_ID+" = "+TABLE_CLINIC+"."+COL_CLINIC_ID+ " WHERE " +
+//                TABLE_SERVICE+"."+COL_SERVICE_NAME+" = ? AND " + TABLE_CLINIC+"."+ COL_CLINIC_NAME+" = ? AND "+
+//                TABLE_TIMESLOTS+"."+COL_TIMESLOT_DATE+" = ? AND " +TABLE_TIMESLOTS+"."+COL_TIMESLOT_ISBOOKED+" = false" ;
+//        return db.rawQuery(selectQuery, new String[]{service, clinic, date});
+//        }
+
+    public Cursor getTimeslotByServiceClinicIDAndDate(int serviceId, int clinicId, String date){
+        if (date == null) {
+            Log.e("BookingDbHelper", "Null Date value passed to getTimeslotByServiceClinicIDAndDate");
+            return null;
+        }
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT " + TABLE_TIMESLOTS+"."+COL_TIMESLOT_TIME +" FROM "+ TABLE_TIMESLOTS + " WHERE " +
+                TABLE_TIMESLOTS+"."+COL_TIMESLOT_SERVICE_ID+" = "+ serviceId +" AND " +
+                TABLE_TIMESLOTS+"."+COL_TIMESLOT_CLINIC_ID +" = "+ clinicId +" AND "+
+                TABLE_TIMESLOTS+"."+COL_TIMESLOT_DATE+" = ? ";
+        return db.rawQuery(selectQuery, new String[]{date});
     }
 }
