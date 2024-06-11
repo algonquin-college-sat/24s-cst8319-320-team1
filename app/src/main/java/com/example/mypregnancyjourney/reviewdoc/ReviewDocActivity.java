@@ -17,20 +17,27 @@ public class ReviewDocActivity extends AppCompatActivity {
 
         Button pdfViewButton = findViewById(R.id.pdf_view_button);
         Button imageViewButton = findViewById(R.id.image_view_button);
-        pdfViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Button videoViewButton = findViewById(R.id.video_view_button);
+        Button audioViewButton = findViewById(R.id.audio_view_button);
+
+        pdfViewButton.setOnClickListener((view) -> {
                 Intent intent = new Intent(ReviewDocActivity.this, PdfViewActivity.class);
                 startActivity(intent);
-            }
         });
 
-        imageViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        imageViewButton.setOnClickListener((view) -> {
                 Intent intent = new Intent(ReviewDocActivity.this, ImageViewActivity.class);
                 startActivity(intent);
-            }
+        });
+
+        videoViewButton.setOnClickListener((view) -> {
+                Intent intent = new Intent(ReviewDocActivity.this, VideoViewActivity.class);
+                startActivity(intent);
+        });
+
+        audioViewButton.setOnClickListener((view) -> {
+                Intent intent = new Intent(ReviewDocActivity.this, AudioViewActivity.class);
+                startActivity(intent);
         });
 
     }
