@@ -28,6 +28,15 @@
         android:testOnly="true"
         android:theme="@style/Theme.MyPregnancyJourney" >
         <activity
+            android:name="com.example.mypregnancyjourney.reviewdoc.ImageViewActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.mypregnancyjourney.reviewdoc.PdfViewActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.mypregnancyjourney.reviewdoc.ReviewDocActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.mypregnancyjourney.LastSevenDaysActivity"
             android:exported="false" />
         <activity
