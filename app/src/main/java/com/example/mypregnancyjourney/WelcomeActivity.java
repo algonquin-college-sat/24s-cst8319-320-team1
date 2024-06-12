@@ -16,8 +16,6 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
 
-//        BookingDbHelper dbHelper = new BookingDbHelper(this);
-
         // Retrieve the username from the intent
         String username = getIntent().getStringExtra("USERNAME");
 
@@ -53,7 +51,7 @@ public class WelcomeActivity extends AppCompatActivity {
         calenderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
+                Intent intent = new Intent(WelcomeActivity.this, CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
@@ -65,7 +63,7 @@ public class WelcomeActivity extends AppCompatActivity {
         accountInfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, CalendarActivity.class);
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
@@ -89,7 +87,7 @@ public class WelcomeActivity extends AppCompatActivity {
         babyimageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
+                Intent intent = new Intent(WelcomeActivity.this, CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
@@ -100,7 +98,7 @@ public class WelcomeActivity extends AppCompatActivity {
         reviewDocBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
+                Intent intent = new Intent(WelcomeActivity.this, CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);

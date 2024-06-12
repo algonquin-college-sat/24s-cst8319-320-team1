@@ -27,7 +27,7 @@ public class TimeslotsActivity extends AppCompatActivity{
     private LinearLayout timeslotsContainer;
     private Button backButton, confirmButton;
     private View selectedTimeslotView;
-    private BookingDbHelper dbHelper;
+    private UserDbHelper dbHelper = new UserDbHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,6 @@ public class TimeslotsActivity extends AppCompatActivity{
         backButton = findViewById(R.id.button_back);
         confirmButton = findViewById(R.id.button_confirm);
 
-        dbHelper = new BookingDbHelper(this);
 
         String userEmail = getIntent().getStringExtra("UserEmail");
         String service = getIntent().getStringExtra("Service_selected");

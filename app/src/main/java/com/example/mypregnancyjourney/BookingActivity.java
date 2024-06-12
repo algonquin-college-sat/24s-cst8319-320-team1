@@ -23,19 +23,20 @@ import java.util.Calendar;
 
 public class BookingActivity extends AppCompatActivity {
 
-    private BookingDbHelper dbHelper;
     private Spinner provinceSpinner, citySpinner, serviceSpinner, clinicSpinner;
     private Button searchBtn, backBtn;
 
     private String selectedService, selectedClinic;
     private int selectedService_id , selectedClinic_id;
 
+    private UserDbHelper dbHelper = new UserDbHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
 
-        dbHelper = new BookingDbHelper(this);
+
 
         provinceSpinner = findViewById(R.id.province_spinner);
         citySpinner = findViewById(R.id.city_spinner);
@@ -78,90 +79,111 @@ public class BookingActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        dbHelper.close();
+        super.onDestroy();
+    }
+
     private void populateProvinceSpinner() {
-        Cursor cursor = dbHelper.getUniqueProvinces();
-        ArrayList<String> provinces = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            provinces.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_PROVINCE)));
+        try (Cursor cursor = dbHelper.getUniqueProvinces()){
+            ArrayList<String> provinces = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                provinces.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_PROVINCE)));
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, provinces);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            provinceSpinner.setAdapter(adapter);
+        } catch (Exception e){
+            Log.e("BookingActivity", "Error while getUniqueProvinces()", e);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, provinces);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        provinceSpinner.setAdapter(adapter);
+
     }
 
     private void populateCitySpinner(String province) {
-        Cursor cursor = dbHelper.getCitiesByProvince(province);
-        ArrayList<String> cities = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            cities.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_CITY)));
+        try (Cursor cursor = dbHelper.getCitiesByProvince(province)){
+            ArrayList<String> cities = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                cities.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_CITY)));
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            citySpinner.setAdapter(adapter);
+
+            citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    String selectedCity = citySpinner.getSelectedItem().toString();
+                    populateServiceSpinner(province, selectedCity);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // Do nothing here
+                }
+            });
+        }catch (Exception e){
+            Log.e("BookingActivity", "Error while getCitiesByProvince()", e);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        citySpinner.setAdapter(adapter);
 
-        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedCity = citySpinner.getSelectedItem().toString();
-                populateServiceSpinner(province, selectedCity);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
-            }
-        });
     }
 
     private void populateServiceSpinner(String province, String city) {
-        Cursor cursor = dbHelper.getServicesByProvinceAndCity(province, city);
-        ArrayList<String> services = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            services.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_SERVICE_NAME)));
+        try(Cursor cursor = dbHelper.getServicesByProvinceAndCity(province, city)){
+            ArrayList<String> services = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                services.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_SERVICE_NAME)));
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, services);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            serviceSpinner.setAdapter(adapter);
+
+            serviceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    selectedService = serviceSpinner.getSelectedItem().toString();
+                    selectedService_id = dbHelper.getServiceId(selectedService);
+                    Log.d("BookingActivity","selectedService is "+selectedService + "; service id is "+ selectedService_id );
+                    populateClinicSpinner(province, city, selectedService);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // Do nothing here
+                }
+            });
+        }catch (Exception e){
+            Log.e("BookingActivity", "Error while getServicesByProvinceAndCity()", e);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, services);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        serviceSpinner.setAdapter(adapter);
-
-        serviceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selectedService = serviceSpinner.getSelectedItem().toString();
-                selectedService_id = dbHelper.getServiceId(selectedService);
-                Log.d("BookingActivity","selectedService is "+selectedService + "; service id is "+ selectedService_id );
-                populateClinicSpinner(province, city, selectedService);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
-            }
-        });
     }
 
     private void populateClinicSpinner(String province, String city, String service) {
-        Cursor cursor = dbHelper.getClinicsByProvinceCityAndService(province, city, service);
-        ArrayList<String> clinics = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            clinics.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_NAME)));
+        try(Cursor cursor = dbHelper.getClinicsByProvinceCityAndService(province, city, service)){
+            ArrayList<String> clinics = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                clinics.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_NAME)));
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, clinics);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            clinicSpinner.setAdapter(adapter);
+
+            clinicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    selectedClinic = clinicSpinner.getSelectedItem().toString();
+                    selectedClinic_id = dbHelper.getClinicId(selectedClinic);
+                    Log.d("BookingActivity","selectedClinic is "+selectedClinic + "; clinic id is "+ selectedClinic_id );
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    // Do nothing here
+                }
+            });
+        } catch (Exception e){
+            Log.e("BookingActivity", "Error while getClinicsByProvinceCityAndService()", e);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, clinics);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        clinicSpinner.setAdapter(adapter);
 
-        clinicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedClinic = clinicSpinner.getSelectedItem().toString();
-                selectedClinic_id = dbHelper.getClinicId(selectedClinic);
-                Log.d("BookingActivity","selectedClinic is "+selectedClinic + "; clinic id is "+ selectedClinic_id );
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // Do nothing here
-            }
-        });
     }
 
 
