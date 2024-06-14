@@ -14,6 +14,8 @@ import androidx.annotation.RequiresApi;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
@@ -86,6 +88,16 @@ public class UserDbHelper extends SQLiteOpenHelper {
         db.execSQL(DELETE_TABLE_TIMESLOTS);
         db.execSQL(DELETE_TABLE_CLINIC);
 
+        onCreate(db);
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Handle database downgrade
+        db.execSQL(DELETE_TABLE_SERVICE);
+        db.execSQL(DELETE_TABLE_CLINIC);
+        db.execSQL(DELETE_TABLE_TIMESLOTS);
+        db.execSQL(DELETE_TABLE_BOOKING);
         onCreate(db);
     }
 
@@ -286,11 +298,11 @@ public class UserDbHelper extends SQLiteOpenHelper {
         insertService(db,"Blood tests");
         insertService(db,"Vaccinations");
 
-        insertClinic(db,"RAWSKN","2417 Holly Lane Unit 212E", "Ottawa","Ontario","K1V 7P2","chan0527@gmail.com","(561) 713-6495");
-        insertClinic(db,"UC BABY Ottawa","1300 Baseline Road","Ottawa","Ontario","K2C 0A9","chan0527@gmail.com","(855) 622-4774");
-        insertClinic(db,"A Date With Baby","20 De Boers Drive Suite 220","Toronto","Ontario","M3J 0H1","chan0527@gmail.com","(435) 875-5998");
-        insertClinic(db,"Baby in Sight 3D / 4D Fetal Ultrasound","8312 McCowan Rd., Unit 204B","Markham","Ontario","L3P 8E1","chan0527@gmail.com","(858) 719-5478");
-        insertClinic(db,"Institut Maïa","1139 Boulevard de la Cité-des-Jeunes","Vaudreuil-Dorion","Quebec","J7V 0H2","chan0527@gmail.com","(547) 231-1641");
+        insertClinic(db,"RAWSKN","2417 Holly Lane Unit 212E", "Ottawa","Ontario","K1V 7P2","chan0527@algonquinlive.com","(561) 713-6495");
+        insertClinic(db,"UC BABY Ottawa","1300 Baseline Road","Ottawa","Ontario","K2C 0A9","chan0527@algonquinlive.com","(855) 622-4774");
+        insertClinic(db,"A Date With Baby","20 De Boers Drive Suite 220","Toronto","Ontario","M3J 0H1","chan0527@algonquinlive.com","(435) 875-5998");
+        insertClinic(db,"Baby in Sight 3D / 4D Fetal Ultrasound","8312 McCowan Rd., Unit 204B","Markham","Ontario","L3P 8E1","chan0527@algonquinlive.com","(858) 719-5478");
+        insertClinic(db,"Institut Maïa","1139 Boulevard de la Cité-des-Jeunes","Vaudreuil-Dorion","Quebec","J7V 0H2","chan0527@algonquinlive.com","(547) 231-1641");
     }
 
 
@@ -420,6 +432,59 @@ public class UserDbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<Timeslot> getAllTimeslots(int serviceId, int clinicId, String date){
+        if (date == null) {
+            Log.e("BookingDbHelper", "Null Date value passed to getAllTimeslots");
+            return null;
+        }
+        List<Timeslot> timeslotList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT " + TABLE_TIMESLOTS+"."+COL_TIMESLOT_ID +","+ TABLE_TIMESLOTS+"."+COL_TIMESLOT_TIME +","+ TABLE_TIMESLOTS+"."+COL_TIMESLOT_ISBOOKED  + " FROM "+ TABLE_TIMESLOTS + " WHERE " +
+                TABLE_TIMESLOTS+"."+COL_TIMESLOT_SERVICE_ID+" = "+ serviceId +" AND " +
+                TABLE_TIMESLOTS+"."+COL_TIMESLOT_CLINIC_ID +" = "+ clinicId +" AND "+
+//                TABLE_TIMESLOTS+"."+COL_TIMESLOT_ISBOOKED+" = 0 AND "+
+                TABLE_TIMESLOTS+"."+COL_TIMESLOT_DATE+" = ? ";
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{date});
+
+        if(cursor.moveToFirst()){
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("t_id"));
+                String time = cursor.getString(cursor.getColumnIndexOrThrow("time"));
+                boolean isBooked = cursor.getInt(cursor.getColumnIndexOrThrow("isBooked")) == 1;
+                timeslotList.add(new Timeslot(id, time, isBooked));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return timeslotList;
+    }
+
+    public boolean isTimeslotBooked(int t_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT isBooked FROM Timeslots WHERE t_id=?", new String[]{String.valueOf(t_id)});
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                boolean isBooked = cursor.getInt(0) == 1;
+                cursor.close();
+                return isBooked;
+            }
+            cursor.close();
+        }
+        return false;
+    }
+
+    public void bookTimeslot(int t_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("isBooked", 1);
+        db.update("Timeslots", values, "t_id=?", new String[]{String.valueOf(t_id)});
+    }
+
+//    public Cursor getAllTimeslots() {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        return db.rawQuery("SELECT t_id, time, isBooked FROM Timeslots", null);
+//    }
+
+
 //    public long insertTimeslot(int clinic_id, int service_id, String time, boolean isBooked, LocalDate date) {
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        ContentValues values = new ContentValues();
@@ -487,6 +552,22 @@ public class UserDbHelper extends SQLiteOpenHelper {
 //
 //        return c;
 //    }
+
+    // Get Clinic Email by clinic id
+    public String getClinicEmail(int clinic_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT " + TABLE_CLINIC + "." + COL_CLINIC_EMAIL + " FROM " + TABLE_CLINIC + " WHERE "
+                + COL_CLINIC_ID + " = " + clinic_id;
+        String clinicEmail = null;
+        try (Cursor c = db.rawQuery(selectQuery, null)) {
+            if (c.moveToFirst()) {
+                clinicEmail = c.getString(0);
+            }
+        } catch (Exception e) {
+            Log.e("UserDbHelper", "Error while getting clinic Email", e);
+        }
+        return clinicEmail;
+    }
 
     // Get Clinic id  by clinic name
     public int getClinicId (String name){
@@ -573,17 +654,5 @@ public class UserDbHelper extends SQLiteOpenHelper {
 //        return db.rawQuery(selectQuery, new String[]{service, clinic, date});
 //        }
 
-    public Cursor getTimeslotByServiceClinicIDAndDate(int serviceId, int clinicId, String date){
-        if (date == null) {
-            Log.e("BookingDbHelper", "Null Date value passed to getTimeslotByServiceClinicIDAndDate");
-            return null;
-        }
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT " + TABLE_TIMESLOTS+"."+COL_TIMESLOT_TIME +" FROM "+ TABLE_TIMESLOTS + " WHERE " +
-                TABLE_TIMESLOTS+"."+COL_TIMESLOT_SERVICE_ID+" = "+ serviceId +" AND " +
-                TABLE_TIMESLOTS+"."+COL_TIMESLOT_CLINIC_ID +" = "+ clinicId +" AND "+
-                TABLE_TIMESLOTS+"."+COL_TIMESLOT_DATE+" = ? ";
-        return db.rawQuery(selectQuery, new String[]{date});
-    }
 
 }

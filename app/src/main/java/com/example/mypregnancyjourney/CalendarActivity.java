@@ -81,7 +81,11 @@ public class CalendarActivity extends Activity {
 
         calendarView = (MaterialCalendarView) findViewById(R.id.calendar);
         calendarView.addDecorator(new TodayDecorator());
-        markEventDays(username);
+        try {
+            markEventDays(username);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
         calendarView.setOnDateChangedListener((widget, date, selected) ->  {

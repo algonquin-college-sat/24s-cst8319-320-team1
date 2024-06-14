@@ -1,7 +1,6 @@
 package com.example.mypregnancyjourney;
 
 
-import static com.example.mypregnancyjourney.BookingDbHelper.*;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -45,6 +44,7 @@ public class BookingActivity extends AppCompatActivity {
         searchBtn = findViewById(R.id.search_button);
         backBtn = findViewById(R.id.back_button);
 
+        String userName = getIntent().getStringExtra("USERNAME");
         String userEmail = getIntent().getStringExtra("UserEmail");
 
         populateProvinceSpinner();
@@ -65,6 +65,7 @@ public class BookingActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(click-> {
                 Intent toTimeslots = new Intent(BookingActivity.this, TimeslotsActivity.class);
                 toTimeslots.putExtra("UserEmail",userEmail);
+                toTimeslots.putExtra("USERNAME",userName);
                 toTimeslots.putExtra("ServiceId_selected",selectedService_id);
                 toTimeslots.putExtra("ClinicId_selected",selectedClinic_id);
                 toTimeslots.putExtra("Service_selected",selectedService);
@@ -75,6 +76,7 @@ public class BookingActivity extends AppCompatActivity {
         backBtn.setOnClickListener(click->{
             Intent backtoMain = new Intent(BookingActivity.this,WelcomeActivity.class);
             startActivity(backtoMain);
+            finish();
         });
 
     }
@@ -89,7 +91,7 @@ public class BookingActivity extends AppCompatActivity {
         try (Cursor cursor = dbHelper.getUniqueProvinces()){
             ArrayList<String> provinces = new ArrayList<>();
             while (cursor.moveToNext()) {
-                provinces.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_PROVINCE)));
+                provinces.add(cursor.getString(0));
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, provinces);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -104,7 +106,7 @@ public class BookingActivity extends AppCompatActivity {
         try (Cursor cursor = dbHelper.getCitiesByProvince(province)){
             ArrayList<String> cities = new ArrayList<>();
             while (cursor.moveToNext()) {
-                cities.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_CITY)));
+                cities.add(cursor.getString(0));
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -132,7 +134,7 @@ public class BookingActivity extends AppCompatActivity {
         try(Cursor cursor = dbHelper.getServicesByProvinceAndCity(province, city)){
             ArrayList<String> services = new ArrayList<>();
             while (cursor.moveToNext()) {
-                services.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_SERVICE_NAME)));
+                services.add(cursor.getString(0));
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, services);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -161,7 +163,7 @@ public class BookingActivity extends AppCompatActivity {
         try(Cursor cursor = dbHelper.getClinicsByProvinceCityAndService(province, city, service)){
             ArrayList<String> clinics = new ArrayList<>();
             while (cursor.moveToNext()) {
-                clinics.add(cursor.getString(cursor.getColumnIndexOrThrow(COL_CLINIC_NAME)));
+                clinics.add(cursor.getString(0));
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, clinics);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

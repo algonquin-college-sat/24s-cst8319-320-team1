@@ -47,7 +47,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        Button calenderBtn = findViewById(R.id.calender_btn);
+        Button calenderBtn = findViewById(R.id.calendar_btn);
         calenderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +75,7 @@ public class WelcomeActivity extends AppCompatActivity {
         bookappointBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(WelcomeActivity.this, BookingActivity.class); // input your class
+                Intent intent = new Intent(WelcomeActivity.this, BookingActivity.class);
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 intent.putExtra("UserEmail", userEmail);
@@ -89,7 +89,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WelcomeActivity.this, CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
-                intent.putExtra("USERNAME", username);
+//                intent.putExtra("USERNAME", username);
                 startActivity(intent);
             }
         });
