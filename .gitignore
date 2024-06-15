@@ -1,0 +1,27 @@
+# Kotlin/Java
+*.class
+*.jar
+*.war
+*.ear
+/build
+/out
+
+# Android
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+.DS_Store
+/captures
+*.iml
+.idea/
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+
+# Log files
+*.log

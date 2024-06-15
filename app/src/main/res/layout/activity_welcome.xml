@@ -19,7 +19,7 @@
 
     <!-- Button for Function 1 -->
     <Button
-        android:id="@+id/calender_btn"
+        android:id="@+id/calendar_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/welcome_message"
@@ -32,7 +32,7 @@
         android:id="@+id/accountinfo_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/calender_btn"
+        android:layout_below="@id/calendar_btn"
         android:layout_marginTop="20dp"
         android:text="Account Profile"
         android:background="#FFC107" />
@@ -47,7 +47,11 @@
         android:text="Booking Appointment"
         android:background="#FFC107" />
 
+<<<<<<< HEAD
+    <!-- Button for Function 4 -->
+=======
         <!-- Button for Function 4 -->
+>>>>>>> dev
     <Button
         android:id="@+id/babyImage_btn"
         android:layout_width="match_parent"
@@ -57,7 +61,6 @@
         android:text="Baby Illustration Images"
         android:background="#FFC107" />
 
-        <!-- Button for Function 5 -->
     <Button
         android:id="@+id/reviewDoc_btn"
         android:layout_width="match_parent"

@@ -15,7 +15,7 @@ import java.util.Locale;
 
 public class EventDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "EventDatabase.db";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 1;
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + CalendarContract.EventEntry.TABLE_NAME + " (" +
@@ -146,6 +146,10 @@ public class EventDbHelper extends SQLiteOpenHelper {
 
     public List<String> getEventDatesForUser(String username) {
         List<String> dates = new ArrayList<>();
+
+        if (username == null || username.isEmpty()){
+            throw new IllegalArgumentException("User name cannot be null or empty");
+        }
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(
                 CalendarContract.EventEntry.TABLE_NAME,
@@ -157,7 +161,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 
         int dateIndex = cursor.getColumnIndex(CalendarContract.EventEntry.COLUMN_NAME_DATE);
 
-        if (dateIndex != -1) { // Ensure the column index is valid
+        if (dateIndex != -1 && cursor != null) { // Ensure the column index is valid
             while (cursor.moveToNext()) {
                 dates.add(cursor.getString(dateIndex));
             }
@@ -166,7 +170,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
         }
 
         cursor.close();
-        db.close();
+//        db.close();
         return dates;
     }
 

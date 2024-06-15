@@ -16,8 +16,13 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+
         // Retrieve the username from the intent
         String username = getIntent().getStringExtra("USERNAME");
+
+        // Retrieve the user email from the intent
+        String userEmail = getIntent().getStringExtra("UserEmail");
+
         if (username != null) {
             // Set the welcome message with the username
             TextView welcomeMessage = findViewById(R.id.welcome_message); // Assume you have a TextView for the message
@@ -43,11 +48,11 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        Button calenderBtn = findViewById(R.id.calender_btn);
+        Button calenderBtn = findViewById(R.id.calendar_btn);
         calenderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
+                Intent intent = new Intent(WelcomeActivity.this, CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
@@ -59,7 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
         accountInfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, CalendarActivity.class);
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
@@ -71,9 +76,10 @@ public class WelcomeActivity extends AppCompatActivity {
         bookappointBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
+                Intent intent = new Intent(WelcomeActivity.this, BookingActivity.class);
                 // Pass the username to CalendarActivity
                 intent.putExtra("USERNAME", username);
+                intent.putExtra("UserEmail", userEmail);
                 startActivity(intent);
             }
         });
@@ -82,9 +88,9 @@ public class WelcomeActivity extends AppCompatActivity {
         babyimageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
+                Intent intent = new Intent(WelcomeActivity.this, CalendarActivity.class); // input your class
                 // Pass the username to CalendarActivity
-                intent.putExtra("USERNAME", username);
+//                intent.putExtra("USERNAME", username);
                 startActivity(intent);
             }
         });
@@ -94,11 +100,10 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Go to ReviewDoc Page
-                Intent intent = new Intent(getApplicationContext(), ReviewDocActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, ReviewDocActivity.class);
                 // intent.putExtra("USERNAME", username);
                 startActivity(intent);
             }
         });
-
     }
 }

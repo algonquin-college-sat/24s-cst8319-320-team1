@@ -75,6 +75,7 @@ public class LogInActivity extends Activity {
                     // User exists and password matches. Proceed with login.
                     Intent intent = new Intent(LogInActivity.this, WelcomeActivity.class);
                     intent.putExtra("USERNAME", username);
+                    intent.putExtra("UserEmail",email);
                     startActivity(intent);
                     finish(); // Optional: Close the login activity
                 } else {
