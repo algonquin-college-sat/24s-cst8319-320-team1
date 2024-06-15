@@ -17,6 +17,15 @@
         android:theme="@style/Theme.MyPregnancyJourney"
         tools:targetApi="31">
         <activity
+            android:name=".reviewdoc.ImageViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".reviewdoc.PdfViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".reviewdoc.ReviewDocActivity"
+            android:exported="false" />
+        <activity
             android:name=".LastSevenDaysActivity"
             android:exported="false" />
         <activity
