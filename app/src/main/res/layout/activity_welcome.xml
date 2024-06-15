@@ -47,11 +47,6 @@
         android:text="Booking Appointment"
         android:background="#FFC107" />
 
-<<<<<<< HEAD
-    <!-- Button for Function 4 -->
-=======
-        <!-- Button for Function 4 -->
->>>>>>> dev
     <Button
         android:id="@+id/babyImage_btn"
         android:layout_width="match_parent"
