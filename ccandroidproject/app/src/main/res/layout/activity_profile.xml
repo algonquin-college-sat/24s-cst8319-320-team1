@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewNameHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textViewAgeHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age"
+        android:layout_below="@id/editTextName"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editTextAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:inputType="number"
+        android:layout_below="@id/editTextName"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textViewDueDateHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due Date (yyyy-mm-dd)"
+        android:layout_below="@id/editTextAge"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editTextDueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Due Date (yyyy-mm-dd)"
+        android:layout_below="@id/editTextAge"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textViewMedicalHistoryHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medical History"
+        android:layout_below="@id/editTextDueDate"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editTextMedicalHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Medical History"
+        android:layout_below="@id/editTextDueDate"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textViewEmergencyContactHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency Contact"
+        android:layout_below="@id/editTextMedicalHistory"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editTextEmergencyContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Emergency Contact"
+        android:layout_below="@id/editTextMedicalHistory"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/buttonSaveProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Profile"
+        android:layout_below="@id/editTextEmergencyContact"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_below="@id/buttonSaveProfile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+</RelativeLayout>
+
