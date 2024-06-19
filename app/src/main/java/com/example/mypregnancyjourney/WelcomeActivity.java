@@ -81,9 +81,7 @@ public class WelcomeActivity extends AppCompatActivity {
         babyimageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class); // input your class
-                // Pass the username to CalendarActivity
-                intent.putExtra("USERNAME", username);
+                Intent intent = new Intent(getApplicationContext(), MainActivity_fetalimage.class); // input your class
                 startActivity(intent);
             }
         });

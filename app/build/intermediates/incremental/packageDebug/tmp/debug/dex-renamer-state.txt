@@ -1,7 +1,7 @@
-#Tue Jun 04 19:48:02 EDT 2024
-base.0=/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.2=/Users/wai/AndroidStudioProjects/My Pregnancy Journey/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
+#Wed Jun 19 04:16:07 EDT 2024
+base.0=C\:\\Users\\bhara\\StudioProjects\\24s-cst8319-320-team1\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\bhara\\StudioProjects\\24s-cst8319-320-team1\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\bhara\\StudioProjects\\24s-cst8319-320-team1\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=14/classes.dex
