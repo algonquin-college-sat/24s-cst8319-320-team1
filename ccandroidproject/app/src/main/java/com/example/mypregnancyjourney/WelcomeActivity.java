@@ -53,5 +53,15 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
+        Button buttonFunction2 = findViewById(R.id.buttonFunction2);
+        buttonFunction2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.putExtra("USERNAME", username);
+                startActivity(intent);
+            }
+        });
+
     }
 }
