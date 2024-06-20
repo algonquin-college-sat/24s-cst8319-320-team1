@@ -18,6 +18,7 @@ public class PdfViewActivity extends AppCompatActivity {
     private PdfRenderer.Page currentPage;
     private ParcelFileDescriptor parcelFileDescriptor;
     private ImageView pdfImageView;
+    private String docPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class PdfViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_pdf);
 
         pdfImageView = findViewById(R.id.pdfImageView);
+        docPath = getIntent().getStringExtra("docPath");
 
         try {
             openRenderer();
@@ -46,9 +48,9 @@ public class PdfViewActivity extends AppCompatActivity {
 
     private void openRenderer() throws IOException {
         // TODO: Replace the PDF file name with the file to display
-        File file = new File(getCacheDir(), "TestPDFfile.pdf");
+        File file = new File(getCacheDir(), docPath);
         if (!file.exists()) {
-            InputStream asset = getAssets().open("TestPDFfile.pdf");
+            InputStream asset = getAssets().open(docPath);
             FileOutputStream output = new FileOutputStream(file);
             byte[] buffer = new byte[1024];
             int size;

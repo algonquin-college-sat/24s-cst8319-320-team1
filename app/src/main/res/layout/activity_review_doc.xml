@@ -4,43 +4,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/pdf_view_button"
+    <TextView
+        android:id="@+id/documentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="View pdf"
+        android:layout_marginTop="30dp"
+        android:text="Review Document"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/dateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Select Date"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/documentTitle"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Spinner
+        android:id="@+id/dateSpinner"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@+id/dateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
+
+    <TextView
+        android:id="@+id/clinicLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Select Clinic"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/dateSpinner"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <Spinner
+        android:id="@+id/clinicSpinner"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@+id/clinicLabel"
+        app:layout_constraintTop_toBottomOf="@+id/clinicLabel" />
+
+    <TextView
+        android:id="@+id/typeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Select Type"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/clinicSpinner"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@+id/typeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/typeLabel" />
+
+
+    <Button
+        android:id="@+id/view_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Show document"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/typeSpinner" />
 
-    <Button
-        android:id="@+id/image_view_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="View image"
-        app:layout_constraintEnd_toEndOf="@+id/pdf_view_button"
-        app:layout_constraintStart_toStartOf="@+id/pdf_view_button"
-        app:layout_constraintTop_toBottomOf="@+id/pdf_view_button" />
-
-    <Button
-        android:id="@+id/video_view_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="View video"
-        app:layout_constraintEnd_toEndOf="@+id/image_view_button"
-        app:layout_constraintStart_toStartOf="@+id/image_view_button"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_button" />
-
-    <Button
-        android:id="@+id/audio_view_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="View audio"
-        app:layout_constraintEnd_toEndOf="@+id/video_view_button"
-        app:layout_constraintStart_toStartOf="@+id/video_view_button"
-        app:layout_constraintTop_toBottomOf="@+id/video_view_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

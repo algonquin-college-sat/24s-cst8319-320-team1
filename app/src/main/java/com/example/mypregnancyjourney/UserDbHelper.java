@@ -41,6 +41,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_BOOKING);
         db.execSQL(CREATE_TABLE_TIMESLOTS);
         db.execSQL(CREATE_TABLE_CLINIC);
+        db.execSQL(CREATE_TABLE_DOCUMENT);
 
         // Insert initial data
         insertInitialData(db);
@@ -87,7 +88,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
         db.execSQL(DELETE_TABLE_BOOKING);
         db.execSQL(DELETE_TABLE_TIMESLOTS);
         db.execSQL(DELETE_TABLE_CLINIC);
-
+        db.execSQL(DELETE_TABLE_DOCUMENT);
         onCreate(db);
     }
 
@@ -98,6 +99,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
         db.execSQL(DELETE_TABLE_CLINIC);
         db.execSQL(DELETE_TABLE_TIMESLOTS);
         db.execSQL(DELETE_TABLE_BOOKING);
+        db.execSQL(DELETE_TABLE_DOCUMENT);
         onCreate(db);
     }
 
@@ -200,6 +202,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_BOOKING = BookingContract.BookingEntry.TABLE_NAME;
     public static final String TABLE_TIMESLOTS = TimeslotsContract.TimeslotEntry.TABLE_NAME;
     public static final String TABLE_CLINIC = ClinicContract.ClinicEntry.TABLE_NAME;
+    public static final String TABLE_DOCUMENT = DocumentContract.DocumentEntry.TABLE_NAME;
 
     // Service Table - column names
     public static final String COL_SERVICE_ID = ServicesContract.ServicesEntry.COLUMN_NAME_SERVICE_ID;
@@ -229,6 +232,16 @@ public class UserDbHelper extends SQLiteOpenHelper {
     public static final String COL_CLINIC_POSTAL_CODE = ClinicContract.ClinicEntry.COLUMN_NAME_POSTAL_CODE;
     public static final String COL_CLINIC_EMAIL = ClinicContract.ClinicEntry.COLUMN_NAME_EMAIL;
     public static final String COL_CLINIC_PHONE = ClinicContract.ClinicEntry.COLUMN_NAME_PHONE;
+
+    // User_document Table - column names
+    public static final String COL_DOCUMENT_DOC_ID = DocumentContract.DocumentEntry.COLUMN_NAME_DOC_ID;
+    public static final String COL_DOCUMENT_EMAIL = DocumentContract.DocumentEntry.COLUMN_NAME_EMAIL;
+    public static final String COL_DOCUMENT_C_ID = DocumentContract.DocumentEntry.COLUMN_NAME_C_ID;
+    public static final String COL_DOCUMENT_S_ID = DocumentContract.DocumentEntry.COLUMN_NAME_S_ID;
+    public static final String COL_DOCUMENT_DOCPATH = DocumentContract.DocumentEntry.COLUMN_NAME_DOCPATH;
+    public static final String COL_DOCUMENT_TYPE = DocumentContract.DocumentEntry.COLUMN_NAME_TYPE;
+    public static final String COL_DOCUMENT_UPLOAD_DATE = DocumentContract.DocumentEntry.COLUMN_NAME_UPLOAD_DATE;
+
 
     // Table Create Statements
     // Service table create statement
@@ -273,6 +286,20 @@ public class UserDbHelper extends SQLiteOpenHelper {
 //                    "FOREIGN KEY(" + COL_BOOKING_TIMESLOT_ID + ") REFERENCES timeslots (t_id),"+
 //                    "UNIQUE (COL_BOOKING_TIMESLOT_ID))";
 
+    // Booking table create statement
+    private static final String CREATE_TABLE_DOCUMENT =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_DOCUMENT + " ( " +
+                    COL_DOCUMENT_DOC_ID + " INTEGER PRIMARY KEY, " +
+                    COL_DOCUMENT_EMAIL + " TEXT, " +
+                    COL_DOCUMENT_C_ID + " INTEGER, " +
+                    COL_DOCUMENT_S_ID + " INTEGER, " +
+                    COL_DOCUMENT_DOCPATH + " TEXT, " +
+                    COL_DOCUMENT_TYPE + " TEXT, " +
+                    COL_DOCUMENT_UPLOAD_DATE + " TEXT ) ";
+//                    "FOREIGN KEY(" + COL_DOCUMENT_EMAIL + ") REFERENCES users (email)," +
+//                    "FOREIGN KEY(" + COL_DOCUMENT_C_ID + ") REFERENCES clinics (c_id),"+
+//                    "FOREIGN KEY(" + COL_DOCUMENT_S_ID + ") REFERENCES services (s_id) ; ";
+
 
     // Service table delete statement
     private static final String DELETE_TABLE_SERVICE =
@@ -290,6 +317,11 @@ public class UserDbHelper extends SQLiteOpenHelper {
     private static final String DELETE_TABLE_CLINIC =
             "DROP TABLE IF EXISTS " + TABLE_CLINIC;
 
+    // User_document table delete statement
+    private static final String DELETE_TABLE_DOCUMENT =
+            "DROP TABLE IF EXISTS " + TABLE_DOCUMENT;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void insertInitialData(SQLiteDatabase db){
         insertService(db,"3D Ultrasound Test");
         insertService(db,"Prenatal Visit");
@@ -303,6 +335,12 @@ public class UserDbHelper extends SQLiteOpenHelper {
         insertClinic(db,"A Date With Baby","20 De Boers Drive Suite 220","Toronto","Ontario","M3J 0H1","chan0527@algonquinlive.com","(435) 875-5998");
         insertClinic(db,"Baby in Sight 3D / 4D Fetal Ultrasound","8312 McCowan Rd., Unit 204B","Markham","Ontario","L3P 8E1","chan0527@algonquinlive.com","(858) 719-5478");
         insertClinic(db,"Institut Maïa","1139 Boulevard de la Cité-des-Jeunes","Vaudreuil-Dorion","Quebec","J7V 0H2","chan0527@algonquinlive.com","(547) 231-1641");
+
+        insertDocument(db, "test@test.com", 2, 3,"TestPDFfile.pdf", "pdf", "2024-04-20");
+        insertDocument(db, "test@test.com", 2, 3,"TestImage.png", "image", "2024-04-20");
+        insertDocument(db, "test@test.com", 2, 2,"TestImage2.png", "image", "2024-05-01");
+        insertDocument(db, "test@test.com", 4, 1,"audio path example", "audio", "2024-06-01");
+        insertDocument(db, "test@test.com", 4, 1,"video path example", "video", "2024-06-15");
     }
 
 
@@ -524,6 +562,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
 
     // ------------------------ "Clinic" table methods ----------------//
 
+    // ------------------------ "Clinic" table methods ----------------//
     public long insertClinic(SQLiteDatabase db,String name, String street, String city, String province, String postalCode, String email, String phone) {
 //        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -654,5 +693,79 @@ public class UserDbHelper extends SQLiteOpenHelper {
 //        return db.rawQuery(selectQuery, new String[]{service, clinic, date});
 //        }
 
+
+    // ------------------------ "User_document" table methods ----------------//
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public long insertDocument(SQLiteDatabase db, String email, int c_id, int s_id, String docpath, String type, String date ) {
+        ContentValues values = new ContentValues();
+        values.put(COL_DOCUMENT_EMAIL, email);
+        values.put(COL_DOCUMENT_C_ID, c_id);
+        values.put(COL_DOCUMENT_S_ID, s_id);
+        values.put(COL_DOCUMENT_DOCPATH, docpath);
+        values.put(COL_DOCUMENT_TYPE, type);
+        values.put(COL_DOCUMENT_UPLOAD_DATE, date);
+        // insert row
+        long doc_id = db.insert(TABLE_DOCUMENT, null, values);
+        return doc_id;
+    }
+
+    // Fetch dates with documents
+    public Cursor getDatesWithDoc() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT DISTINCT " + COL_DOCUMENT_UPLOAD_DATE + " FROM " + TABLE_DOCUMENT;
+        return db.rawQuery(selectQuery, null);
+    }
+
+    // Fetch clinics based on specific date
+    public Cursor getClinicByDate(String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT DISTINCT " + TABLE_CLINIC + "." + COL_CLINIC_NAME + " FROM " + TABLE_CLINIC
+                + " LEFT JOIN " + TABLE_DOCUMENT + " ON " + TABLE_CLINIC + "." + COL_CLINIC_ID + " = " + TABLE_DOCUMENT + "." + COL_DOCUMENT_C_ID
+                + " WHERE " + TABLE_DOCUMENT + "." +  COL_DOCUMENT_UPLOAD_DATE + " = ?";
+        return db.rawQuery(selectQuery, new String[]{date});
+    }
+
+    // Fetch types based on selected date and clinic
+    public Cursor getTypesByDateAndClinic(String date, int c_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT " + COL_DOCUMENT_TYPE + " FROM " + TABLE_DOCUMENT
+                + " WHERE " + COL_DOCUMENT_UPLOAD_DATE + " = ? "
+                + " AND " + COL_DOCUMENT_C_ID + " = ? ";
+        return db.rawQuery(selectQuery, new String[]{date, String.valueOf(c_id)});
+    }
+
+    // Fetch doc_id based on selected date, clinic and type
+    public int getDocIdByDateClinicAndType(String date, int c_id, String type ) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int docId = -1;
+        String selectQuery = "SELECT " + COL_DOCUMENT_DOC_ID + " FROM " + TABLE_DOCUMENT
+                + " WHERE " + COL_DOCUMENT_UPLOAD_DATE + " = ? "
+                + " AND " + COL_DOCUMENT_C_ID + " = ? "
+                + " AND " + COL_DOCUMENT_TYPE + " = ? ";
+        try(Cursor c = db.rawQuery(selectQuery, new String[]{date, String.valueOf(c_id), type})){
+            if(c.moveToFirst()){
+                docId = c.getInt(c.getColumnIndexOrThrow(COL_DOCUMENT_DOC_ID));
+            }
+        }catch (Exception e){
+            Log.e("UserDbHelper", "Error while getting doc_id by date, clinic and type", e);
+        }
+        return docId;
+    }
+
+    // Fetch docPath by using doc_id
+    public String getDocPathByDocId(int doc_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String docPath = "";
+        String selectQuery = "SELECT " + COL_DOCUMENT_DOCPATH + " FROM " + TABLE_DOCUMENT
+                + " WHERE " + COL_DOCUMENT_DOC_ID + " = ? ";
+        try(Cursor c = db.rawQuery(selectQuery, new String[]{ String.valueOf(doc_id) })){
+            if(c.moveToFirst()){
+                docPath = c.getString(c.getColumnIndexOrThrow(COL_DOCUMENT_DOCPATH));
+            }
+        }catch (Exception e){
+            Log.e("UserDbHelper", "Error while getting doc_id by date, clinic and type", e);
+        }
+        return docPath;
+    }
 
 }
