@@ -9,6 +9,7 @@ public class AudioViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String docPath = getIntent().getStringExtra("docPath");
 
         //TODO: Add something to show audio
     }
