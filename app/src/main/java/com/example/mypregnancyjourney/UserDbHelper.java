@@ -339,8 +339,8 @@ public class UserDbHelper extends SQLiteOpenHelper {
         insertDocument(db, "test@test.com", 2, 3,"TestPDFfile.pdf", "pdf", "2024-04-20");
         insertDocument(db, "test@test.com", 2, 3,"TestImage.png", "image", "2024-04-20");
         insertDocument(db, "test@test.com", 2, 2,"TestImage2.png", "image", "2024-05-01");
-        insertDocument(db, "test@test.com", 4, 1,"audio path example", "audio", "2024-06-01");
-        insertDocument(db, "test@test.com", 4, 1,"video path example", "video", "2024-06-15");
+        insertDocument(db, "test@test.com", 4, 1,"myaudio.mp3", "audio", "2024-06-01");
+        insertDocument(db, "test@test.com", 4, 1,"myvideo.mp4", "video", "2024-06-15");
     }
 
 
